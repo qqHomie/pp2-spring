@@ -1,6 +1,4 @@
-import pygame
-import random
-import time
+import pygame, random, time
 
 pygame.init()
 
@@ -17,6 +15,10 @@ enemy_image = pygame.image.load('./images/enemy.png')
 heart_image = pygame.image.load('./images/heart.png')
 coin_image = pygame.image.load('./images/coins.png')
 coin_score_image = pygame.image.load('./images/coin_score.png')
+
+# sounds
+back_sound = pygame.mixer.Sound('./sounds/background.mp3')
+back_sound.play().set_volume(0.1)
 
 #COLORS
 White = (255, 255, 255)
@@ -41,6 +43,8 @@ coin_dy = 2
 hearts = 3
 coins = 0
 
+
+#functions
 def show_player(x, y):
     screen.blit(player_image, (x, y))
 def show_enemy(x, y):
@@ -62,9 +66,6 @@ def isCollision_coin(player_x, player_y, coin_x, coin_y):
     if player_x in range(coin_x - 40, coin_x + 25) and player_y in range(coin_y - 95, coin_y + 25):
         return True
     return False
-
-back_sound = pygame.mixer.Sound('./sounds/background.mp3')
-back_sound.play().set_volume(0.1)
 
 while not Done:
     for event in pygame.event.get():
