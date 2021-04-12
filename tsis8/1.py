@@ -100,6 +100,7 @@ while not Done:
     # collisions
     isCol_coin = isCollision_coin(player_x, player_y, coin_x, coin_y)
     if isCol_coin:
+        pygame.mixer.Sound('./sounds/get_coin.mp3').play()
         coin_x = random.randint(125, 650)
         coin_y = -50
         coins += 1
@@ -125,7 +126,6 @@ while not Done:
             pygame.display.update()
             time.sleep(3)
             pygame.quit()
-            sys.exit()
 
     screen.blit(back_image, (0, 0))
     show_player(player_x, player_y)
