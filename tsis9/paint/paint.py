@@ -75,6 +75,8 @@ while not game_over:
                 screen.blit(eraser, (400, 15))
                 screen.blit(rectangle, (300, 15))
                 screen.blit(circ, (350, 15))
+            if event.key == pygame.K_SPACE:
+                pygame.image.save(screen, str(random.randint(1, 1000)) + 'qqHomie.png')
         if event.type == pygame.MOUSEBUTTONDOWN:
             prev = pygame.mouse.get_pos()
             if prev and prev[1] > 50 and x_rect:
