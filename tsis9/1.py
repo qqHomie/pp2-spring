@@ -90,7 +90,7 @@ class Food:
         screen.blit(self.image, (self.x, self.y))
     
 def show_score(x, y, score):
-    screen.blit(font_score.render('Score: ' + str(score), True, WHITE), (x, y))
+    screen.blit(font_score.render('Score: ' + str(score), True, WHITE), (x, y)) 
 
 
 def show_walls():
@@ -290,6 +290,36 @@ def game_over_multi():
     pygame.display.update()
     time.sleep(2)
 
+def hs_easy():
+    maxi = -1
+    with open('easy.txt', 'r') as f:
+        lines = f.readlines()
+        lines = [i.strip('\n') for i in lines]
+        for i in lines:
+            if int(i) > maxi:
+                maxi = int(i)
+    screen.blit(font_score.render('HIGH SCORE: ' + str(maxi), True, WHITE), (335, 5))
+
+def hs_medium():
+    maxi = -1
+    with open('medium.txt', 'r') as f:
+        lines = f.readlines()
+        lines = [i.strip('\n') for i in lines]
+        for i in lines:
+            if int(i) > maxi:
+                maxi = int(i)
+    screen.blit(font_score.render('HIGH SCORE: ' + str(maxi), True, WHITE), (335, 5))
+
+def hs_hard():
+    maxi = -1
+    with open('hard.txt', 'r') as f:
+        lines = f.readlines()
+        lines = [i.strip('\n') for i in lines]
+        for i in lines:
+            if int(i) > maxi:
+                maxi = int(i)
+    screen.blit(font_score.render('HIGH SCORE: ' + str(maxi), True, WHITE), (335, 5))
+
 snake = Snake(140, 100)
 snake2 = Snake(340, 380)
 food = Food()
@@ -368,6 +398,7 @@ while not Done:
         snake.move()
         collision()
         show_score(5, 5, snake.score)
+        hs_easy()
         if snake.elements[0][0] > 480:
             snake.elements[0][0] = snake.elements[0][0] % 500
         if snake.elements[0][0] < 0:
@@ -391,6 +422,7 @@ while not Done:
         collision()
         show_walls()
         show_score(5, 5, snake.score)
+        hs_medium()
         if in_walls() or in_snake():
             with open('medium.txt', 'a') as f:
                 f.write(str(snake.score) + '\n')
@@ -407,6 +439,7 @@ while not Done:
         show_walls()
         extra_walls()
         show_score(5, 5, snake.score)
+        hs_hard()
         if in_walls() or in_snake() or hard_in_walls():
             print(snake.elements[0])
             with open('hard.txt', 'a') as f:
